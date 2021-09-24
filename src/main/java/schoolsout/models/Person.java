@@ -1,4 +1,4 @@
-package schoolsout;
+package schoolsout.models;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -58,7 +58,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return "schoolsout.Person{" +
+        return "schoolsout.models.Person{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", familyName='" + familyName + '\'' +

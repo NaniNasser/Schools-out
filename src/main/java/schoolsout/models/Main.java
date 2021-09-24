@@ -1,4 +1,4 @@
-package schoolsout;
+package schoolsout.models;
 
 import java.sql.DriverManager;
 

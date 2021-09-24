@@ -1,4 +1,4 @@
-package schoolsout;
+package schoolsout.models;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -61,7 +61,7 @@ public class Module {
 
     @Override
     public String toString() {
-        return "schoolsout.Module{" +
+        return "schoolsout.models.Module{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +

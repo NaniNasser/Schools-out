@@ -1,4 +1,4 @@
-package schoolsout;
+package schoolsout.models;
 
 import javax.persistence.OneToOne;
 
@@ -44,7 +44,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "schoolsout.User{" +
+        return "schoolsout.models.User{" +
                 "login='" + login + '\'' +
                 ", passwordHash='" + passwordHash + '\'' +
                 ", active=" + active +
