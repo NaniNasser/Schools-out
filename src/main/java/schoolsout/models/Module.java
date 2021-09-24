@@ -1,28 +1,26 @@
 package schoolsout.models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
-
+@Entity
 public class Module {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     private String name;
     private String description;
+    @ManyToOne
     private Course course;
 
-    @OneToMany
+    @OneToMany(mappedBy = "module")
     private List<Exam> exams;
 
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

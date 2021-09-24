@@ -1,13 +1,16 @@
 package schoolsout.models;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.OneToOne;
-
+@Entity
 public class User {
 
-    @OneToOne
+    @Id
     private String login;
     private String passwordHash;
     private boolean active;
+    @OneToOne
     private Person person;
 
     public String getLogin() {

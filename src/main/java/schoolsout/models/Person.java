@@ -1,26 +1,29 @@
 package schoolsout.models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Persons")
 
 public class Person {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
 
-    @OneToOne()
+
     private String firstName;
     private String familyName;
+    @Enumerated(EnumType.STRING)
     private Gender gender;
+    @ManyToOne
     private Course course;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -58,11 +61,11 @@ public class Person {
 
     @Override
     public String toString() {
-        return "schoolsout.models.Person{" +
+        return "Person{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", familyName='" + familyName + '\'' +
-                ", Gender=" + Gender +
+                ", gender=" + gender +
                 ", course=" + course +
                 '}';
     }
