@@ -9,7 +9,6 @@ public interface IDAO<T> {
         return emf.createEntityManager();
     }
 
-
         void save(T t);
         T findById(Object id);
 

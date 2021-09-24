@@ -13,6 +13,17 @@ public class User {
     @OneToOne
     private Person person;
 
+    public User(String login, String passwordHash, boolean active, Person person) {
+        this.login = login;
+        this.passwordHash = passwordHash;
+        this.active = active;
+        this.person = person;
+    }
+
+    public User(){
+
+    }
+
     public String getLogin() {
         return login;
     }

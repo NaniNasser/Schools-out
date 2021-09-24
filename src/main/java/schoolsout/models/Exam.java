@@ -18,6 +18,20 @@ public class Exam {
     @ManyToOne
     private Module module;
 
+    public Exam(Long id, String name, String description, LocalDate date, int weight, int total, Module module) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.date = date;
+        this.weight = weight;
+        this.total = total;
+        this.module = module;
+    }
+
+    public Exam(){
+
+    }
+
     public Long getId() {
         return id;
     }

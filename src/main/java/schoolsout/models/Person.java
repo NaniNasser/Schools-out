@@ -19,6 +19,18 @@ public class Person {
     @ManyToOne
     private Course course;
 
+    public Person(Integer id, String firstName, String familyName, Gender gender, Course course) {
+        this.id = id;
+        this.firstName = firstName;
+        this.familyName = familyName;
+        this.gender = gender;
+        this.course = course;
+    }
+
+    public Person() {
+
+    }
+
     public Integer getId() {
         return id;
     }

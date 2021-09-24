@@ -22,6 +22,19 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private List<Module> modules;
 
+    public Course(Long id, String name, String description, String code, String imageURL, boolean active, List<Module> modules) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.code = code;
+        this.imageURL = imageURL;
+        this.active = active;
+        this.modules = modules;
+    }
+
+    public Course() {
+    }
+
     public long getId() {
         return id;
     }

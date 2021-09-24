@@ -35,12 +35,11 @@ public class PersonDAO implements IDAO<Person> {
     }
 
     @Override
-    public List<Person> findAll(Person person) {
+    public  List<Person> findAll(Person person); {
         EntityManager em = getEntityManager(emf);
-        if (person.getId() == ) {
-            em.getTransaction().begin();
-            em.persist(person);
-            em.getTransaction().commit();
+        Person person = em.find(Person.class, List<Person person>);
+        return person;
+
         }
 
 

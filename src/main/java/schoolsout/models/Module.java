@@ -16,6 +16,18 @@ public class Module {
     @OneToMany(mappedBy = "module")
     private List<Exam> exams;
 
+    public Module(Long id, String name, String description, Course course, List<Exam> exams) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.course = course;
+        this.exams = exams;
+    }
+
+    public Module(){
+
+    }
+
     public Long getId() {
         return id;
     }
