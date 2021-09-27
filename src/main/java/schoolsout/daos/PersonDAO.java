@@ -5,6 +5,8 @@ import schoolsout.models.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class PersonDAO implements IDAO<Person> {
@@ -13,6 +15,10 @@ public class PersonDAO implements IDAO<Person> {
 
     public PersonDAO(EntityManagerFactory emf) {
         this.emf = emf;
+    }
+
+    public PersonDAO() {
+
     }
 
 
@@ -36,11 +42,15 @@ public class PersonDAO implements IDAO<Person> {
     }
 
     @Override
-    public  List<Person> findAll(Object id) {
+    public List<Person> findAll() {
         EntityManager em = getEntityManager(emf);
-        List<Person> people = em.find(findAll(Person.class, id));
-    }
-}
+        Query query = em.createQuery("SELECT * Persons");
+        List<Person> list = query.getResultList();
+        em.close();
+        return list;
+        }
+
+
 
 
     @Override
