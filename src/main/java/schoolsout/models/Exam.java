@@ -8,7 +8,6 @@ public class Exam {
     @GeneratedValue
     private Long id;
 
-
     private String name;
     private String description;
     private LocalDate date;

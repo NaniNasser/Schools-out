@@ -1,6 +1,7 @@
 package schoolsout.daos;
 
 import schoolsout.models.Person;
+import schoolsout.models.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -35,12 +36,11 @@ public class PersonDAO implements IDAO<Person> {
     }
 
     @Override
-    public  List<Person> findAll(Person person); {
+    public  List<Person> findAll(Object id) {
         EntityManager em = getEntityManager(emf);
-        Person person = em.find(Person.class, List<Person> findAll();
-
-
-        }
+        List<Person> people = em.find(findAll(Person.class, id));
+    }
+}
 
 
     @Override
@@ -57,6 +57,12 @@ public class PersonDAO implements IDAO<Person> {
 
     @Override
     public void remove(Person person) {
-
+        EntityManager em = getEntityManager(emf);
+        if (person.getId() != null){
+            em.getTransaction().begin();
+            em.remove(person);
+            em.getTransaction().commit();
+        }
+        em.close();
     }
 }
