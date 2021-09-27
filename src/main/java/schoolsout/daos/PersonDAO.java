@@ -37,8 +37,8 @@ public class PersonDAO implements IDAO<Person> {
     @Override
     public  List<Person> findAll(Person person); {
         EntityManager em = getEntityManager(emf);
-        Person person = em.find(Person.class, List<Person person>);
-        return person;
+        Person person = em.find(Person.class, List<Person> findAll();
+
 
         }
 

@@ -1,5 +1,4 @@
 package schoolsout.models;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 @Entity
