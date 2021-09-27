@@ -42,9 +42,7 @@ public class PersonDAO implements IDAO<Person> {
     @Override
     public List<Person> findAll() {
         EntityManager em = getEntityManager(emf);
-        TypedQuery<Person> query = em.createQuery(
-                "SELECT p FROM Person p",
-                Person.class);
+        TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p", Person.class);
         List<Person> list = query.getResultList();
         em.close();
         return list;
@@ -58,7 +56,7 @@ public class PersonDAO implements IDAO<Person> {
         EntityManager em = getEntityManager(emf);
         if (person.getId() != null){
             em.getTransaction().begin();
-            em.persist(person);
+            em.merge(person);
             System.out.println("before commit");
             em.getTransaction().commit();
         }

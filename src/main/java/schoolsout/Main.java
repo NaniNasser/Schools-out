@@ -27,17 +27,18 @@ public class Main {
         personDAO.save(person2);
         personDAO.save(person3);
         personDAO.save(person4);
+        personDAO.save(person5);
 
         List<Person> personsFromDB = personDAO.findAll();
         personsFromDB.forEach(System.out::println);
 
         Person person1FromDB = personsFromDB.get(0);
         person1FromDB.setFamilyName("testFamilyName");
-//        person1FromDB.setCourse(null);
+        person1FromDB.setFirstName("testFirstName");
         personDAO.update(person1FromDB);
 
-        Person person7 = personsFromDB.get(1);
-        personDAO.remove(person7);
+        Person RemovePerson = personsFromDB.get(2);
+        personDAO.remove(RemovePerson);
 
         Person byId = personDAO.findById(3);
         System.out.println(byId);
