@@ -16,11 +16,11 @@ public class Person {
     private String familyName;
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Course course;
 
-    public Person(Integer id, String firstName, String familyName, Gender gender, Course course) {
-        this.id = id;
+    public Person(String firstName, String familyName, Gender gender, Course course) {
+
         this.firstName = firstName;
         this.familyName = familyName;
         this.gender = gender;

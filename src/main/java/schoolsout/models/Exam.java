@@ -16,8 +16,7 @@ public class Exam {
     @ManyToOne
     private Module module;
 
-    public Exam(Long id, String name, String description, LocalDate date, int weight, int total, Module module) {
-        this.id = id;
+    public Exam(String name, String description, LocalDate date, int weight, int total, Module module) {
         this.name = name;
         this.description = description;
         this.date = date;
