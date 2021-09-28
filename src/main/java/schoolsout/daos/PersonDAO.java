@@ -70,9 +70,8 @@ public class PersonDAO implements IDAO<Person> {
         EntityManager em = getEntityManager(emf);
         if (person.getId() != null){
             em.getTransaction().begin();
-            em.remove(person);
             em.remove(em.contains(person) ? person : em.merge(person));
-
+            em.flush();
             em.getTransaction().commit();
         }
         em.close();

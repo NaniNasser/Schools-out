@@ -25,6 +25,7 @@ public class Main {
 
 
 
+
         PersonDAO personDAO = new PersonDAO(emf);
         personDAO.save(person1);
         personDAO.save(person2);
@@ -32,21 +33,24 @@ public class Main {
         personDAO.save(person4);
         personDAO.save(person5);
         personDAO.save(person6);
+        personDAO.save(person7);
 
 
         List<Person> personsFromDB = personDAO.findAll();
         personsFromDB.forEach(System.out::println);
 
-        Person person1FromDB = personsFromDB.get(0);
-        person1FromDB.setFamilyName("testFamilyName");
-        person1FromDB.setFirstName("testFirstName");
+        Person person1FromDB = personsFromDB.get(1);
+        person1FromDB.setFamilyName("changeNameTest");
+        person1FromDB.setFirstName("ChangeLastNameTest");
+        person1FromDB.setId(8);
+        person1FromDB.setGender(Gender.OTHER);
         personDAO.update(person1FromDB);
 
-        Person RemovePerson = personsFromDB.get(7);
+        Person RemovePerson = personsFromDB.get(1);
         personDAO.remove(RemovePerson);
+        personDAO.update(RemovePerson);
 
-        Person byId = personDAO.findById(3);
-        System.out.println(byId);
+
 
     }
 }
