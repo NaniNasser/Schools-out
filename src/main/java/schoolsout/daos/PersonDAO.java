@@ -1,11 +1,13 @@
 package schoolsout.daos;
 
+import org.hibernate.Session;
 import schoolsout.models.Person;
-import schoolsout.models.User;
 
+
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
+
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -57,7 +59,6 @@ public class PersonDAO implements IDAO<Person> {
         if (person.getId() != null){
             em.getTransaction().begin();
             em.merge(person);
-            System.out.println("before commit");
             em.getTransaction().commit();
         }
         em.close();
@@ -70,6 +71,8 @@ public class PersonDAO implements IDAO<Person> {
         if (person.getId() != null){
             em.getTransaction().begin();
             em.remove(person);
+            em.remove(em.contains(person) ? person : em.merge(person));
+
             em.getTransaction().commit();
         }
         em.close();

@@ -25,9 +25,6 @@ public class Exam {
         this.module = module;
     }
 
-    public Exam(){
-
-    }
 
     public Long getId() {
         return id;

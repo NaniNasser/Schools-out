@@ -20,6 +20,9 @@ public class Main {
         Person person3 = new Person("Tupac", "Shakur",Gender.MALE, person.getCourse());
         Person person4 = new Person("Biggie", "Smalls",Gender.MALE, person.getCourse());
         Person person5 = new Person("Scarlet", "Johansson",Gender.FEMALE, person.getCourse());
+        Person person6 = new Person("I AM ", "GROOT",Gender.OTHER, person.getCourse());
+        Person person7 = new Person("Spongebob ", "Squarespace",Gender.OTHER, person.getCourse());
+
 
 
         PersonDAO personDAO = new PersonDAO(emf);
@@ -28,6 +31,8 @@ public class Main {
         personDAO.save(person3);
         personDAO.save(person4);
         personDAO.save(person5);
+        personDAO.save(person6);
+
 
         List<Person> personsFromDB = personDAO.findAll();
         personsFromDB.forEach(System.out::println);
@@ -37,7 +42,7 @@ public class Main {
         person1FromDB.setFirstName("testFirstName");
         personDAO.update(person1FromDB);
 
-        Person RemovePerson = personsFromDB.get(2);
+        Person RemovePerson = personsFromDB.get(7);
         personDAO.remove(RemovePerson);
 
         Person byId = personDAO.findById(3);
