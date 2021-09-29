@@ -2,6 +2,7 @@ package schoolsout.models;
 
 import javax.persistence.*;
 import java.util.List;
+
 @Entity
 public class Module {
 

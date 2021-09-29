@@ -1,6 +1,11 @@
 package schoolsout.models;
-import javax.persistence.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
+
 @Entity
 public class Exam {
 
@@ -14,9 +19,9 @@ public class Exam {
     private int weight;
     private int total;
     @ManyToOne
-    private Module module;
+    private schoolsout.models.Module module;
 
-    public Exam(String name, String description, LocalDate date, int weight, int total, Module module) {
+    public Exam(String name, String description, LocalDate date, int weight, int total, schoolsout.models.Module module) {
         this.name = name;
         this.description = description;
         this.date = date;
@@ -74,11 +79,11 @@ public class Exam {
         this.total = total;
     }
 
-    public Module getModule() {
+    public schoolsout.models.Module getModule() {
         return module;
     }
 
-    public void setModule(Module module) {
+    public void setModule(schoolsout.models.Module module) {
         this.module = module;
     }
 

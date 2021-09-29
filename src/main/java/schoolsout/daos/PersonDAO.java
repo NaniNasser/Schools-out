@@ -1,17 +1,13 @@
 package schoolsout.daos;
 
-import org.hibernate.Session;
 import schoolsout.models.Person;
 
-
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class PersonDAO implements IDAO<Person> {
+public class PersonDAO implements schoolsout.daos.IDAO<Person> {
 
     private EntityManagerFactory emf;
 

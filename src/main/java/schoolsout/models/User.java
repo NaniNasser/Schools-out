@@ -3,6 +3,7 @@ package schoolsout.models;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+
 @Entity
 public class User {
 
@@ -12,9 +13,9 @@ public class User {
     private boolean active;
 
     @OneToOne
-    private Person person;
+    private schoolsout.models.Person person;
 
-    public User(String login, String passwordHash, boolean active, Person person) {
+    public User(String login, String passwordHash, boolean active, schoolsout.models.Person person) {
         this.login = login;
         this.passwordHash = passwordHash;
         this.active = active;
@@ -49,11 +50,11 @@ public class User {
         this.active = active;
     }
 
-    public Person getPerson() {
+    public schoolsout.models.Person getPerson() {
         return person;
     }
 
-    public void setPerson(Person person) {
+    public void setPerson(schoolsout.models.Person person) {
         this.person = person;
     }
 

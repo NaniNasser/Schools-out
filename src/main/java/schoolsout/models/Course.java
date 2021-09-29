@@ -20,9 +20,9 @@ public class Course {
     private boolean active;
 
     @OneToMany(mappedBy = "course")
-    private List<Module> modules;
+    private List<schoolsout.models.Module> modules;
 
-    public Course(String name, String description, String code, String imageURL, boolean active, List<Module> modules) {
+    public Course(String name, String description, String code, String imageURL, boolean active, List<schoolsout.models.Module> modules) {
 
         this.name = name;
         this.description = description;
@@ -83,11 +83,11 @@ public class Course {
         this.active = active;
     }
 
-    public List<Module> getModules() {
+    public List<schoolsout.models.Module> getModules() {
         return modules;
     }
 
-    public void setModules(List<Module> modules) {
+    public void setModules(List<schoolsout.models.Module> modules) {
         this.modules = modules;
     }
 
