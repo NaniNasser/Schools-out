@@ -99,9 +99,9 @@ public class MainTest {
 
         System.out.println("smartsaving modules");
 
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>"+ module0);
+        System.out.println(module0);
         module0 = moduleDAO.smartSave(module0);
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>"+ module0);
+        System.out.println(module0);
         module1 = moduleDAO.smartSave(module1);
         module2 = moduleDAO.smartSave(module2);
         module3 = moduleDAO.smartSave(module3);
