@@ -15,7 +15,7 @@ public class Main {
 
         Person person = new Person();
 
-        Person person1 = new Person("Nasser", "Faqiri", Gender.MALE, person.getCourse());
+        Person person1 = new Person("Nasser", "Faqiri", Gender.MALE, person.getModule());
         Person person2 = new Person("Nani", "Poonani",Gender.MALE, person.getCourse());
         Person person3 = new Person("Tupac", "Shakur",Gender.MALE, person.getCourse());
         Person person4 = new Person("Biggie", "Smalls",Gender.MALE, person.getCourse());

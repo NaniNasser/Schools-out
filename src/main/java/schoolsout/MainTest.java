@@ -1,6 +1,8 @@
 package schoolsout;
 
+import schoolsout.daos.CourseDAO;
 import schoolsout.daos.PersonDAO;
+import schoolsout.models.Course;
 import schoolsout.models.Gender;
 import schoolsout.models.Person;
 
@@ -14,7 +16,15 @@ public class MainTest {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("datasource");
 
+
         Person person = new Person();
+
+
+        CourseDAO courseDAO = new CourseDAO(emf);
+        List<Course> courseFromDB = courseDAO.findAll();
+        courseFromDB.forEach(System.out::println);
+
+        //Course course1 = new Course("Java EE"," Java EE offers a rich enterprise software platform and with over 20 compliant Java EE implementations to choose from.","01","https://blogs.sap.com/wp-content/uploads/2017/07/JavaEE.png",true,);
 
         Person person0 = new Person("Morty", "Rick", Gender.MALE, person.getCourse());
         Person person1 = new Person("Lord", "Kek", Gender.OTHER, person.getCourse());
@@ -47,9 +57,9 @@ public class MainTest {
         personsFromDB.forEach(System.out::println);
 
 
-        Person RemovePerson = personsFromDB.get(1);
+        Person RemovePerson = personsFromDB.get(0);
         personDAO.remove(RemovePerson);
-        personDAO.update(RemovePerson);
+
 
     }
 }

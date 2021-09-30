@@ -1,13 +1,11 @@
 package schoolsout.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 
 @Entity
+@Table(name = "Course")
 public class Course {
 
     @Id
@@ -19,7 +17,7 @@ public class Course {
     private String imageURL;
     private boolean active;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "Course")
     private List<schoolsout.models.Module> modules;
 
     public Course(String name, String description, String code, String imageURL, boolean active, List<schoolsout.models.Module> modules) {
@@ -32,8 +30,7 @@ public class Course {
         this.modules = modules;
     }
 
-    public Course() {
-    }
+
 
     public Long getId() {
         return id;

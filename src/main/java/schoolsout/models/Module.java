@@ -24,9 +24,7 @@ public class Module {
         this.exams = exams;
     }
 
-    public Module(){
 
-    }
 
     public Long getId() {
         return id;
