@@ -11,6 +11,7 @@ public class Course {
     @Id
     @GeneratedValue
     private Long id;
+
     private String name;
     @Column(length = 2000)
     private String description;
