@@ -17,10 +17,10 @@ public class Course {
     private String imageURL;
     private boolean active;
 
-    @OneToMany(mappedBy = "Course")
-    private List<schoolsout.models.Module> modules;
+    @OneToMany(mappedBy = "course")
+    private List<Module> modules;
 
-    public Course(String name, String description, String code, String imageURL, boolean active, List<schoolsout.models.Module> modules) {
+    public Course(String name, String description, String code, String imageURL, boolean active, List<Module> modules) {
 
         this.name = name;
         this.description = description;
