@@ -1,9 +1,11 @@
 package schoolsout;
 
 import schoolsout.daos.CourseDAO;
+import schoolsout.daos.ModuleDAO;
 import schoolsout.daos.PersonDAO;
 import schoolsout.models.Course;
 import schoolsout.models.Gender;
+import schoolsout.models.Module;
 import schoolsout.models.Person;
 
 import javax.persistence.EntityManagerFactory;
@@ -24,7 +26,12 @@ public class MainTest {
         List<Course> courseFromDB = courseDAO.findAll();
         courseFromDB.forEach(System.out::println);
 
-        //Course course1 = new Course("Java EE"," Java EE offers a rich enterprise software platform and with over 20 compliant Java EE implementations to choose from.","01","https://blogs.sap.com/wp-content/uploads/2017/07/JavaEE.png",true,);
+        ModuleDAO moduleDAO = new ModuleDAO(emf);
+        List<Module> moduleFromDB = moduleDAO.findAll();
+        moduleFromDB.forEach(System.out::println);
+
+        Module module = new Module("Hoofdstuk 1","Welcome to the world of Java programming! Programming languages enable humans to write instructions that a computer can perform. With precise instructions, computers coordinate applications and systems that run the modern world.", person.getCourse(), )
+        Course course1 = new Course("Java EE"," Java EE offers a rich enterprise software platform and with over 20 compliant Java EE implementations to choose from.","01","https://blogs.sap.com/wp-content/uploads/2017/07/JavaEE.png",true,);
 
         Person person0 = new Person("Morty", "Rick", Gender.MALE, person.getCourse());
         Person person1 = new Person("Lord", "Kek", Gender.OTHER, person.getCourse());
