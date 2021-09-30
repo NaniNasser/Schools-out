@@ -22,7 +22,16 @@ public class ModuleDAO implements IDAO<Module>{
         em.getTransaction().commit();
         em.close();
     }
-    
+
+    public Module smartSave(Module module) {
+        EntityManager em = getEntityManager(emf);
+        em.getTransaction().begin();
+        em.persist(module);
+        em.flush();
+        em.getTransaction().commit();
+        em.close();
+        return module;
+    }
     
 
     @Override
@@ -36,7 +45,7 @@ public class ModuleDAO implements IDAO<Module>{
     @Override
     public List<Module> findAll() {
         EntityManager em = getEntityManager(emf);
-        TypedQuery<Module> query = em.createQuery("SELECT p FROM module p", Module.class);
+        TypedQuery<Module> query = em.createQuery("SELECT p FROM Module p", Module.class);
         List<Module> list = query.getResultList();
         em.close();
         return list;

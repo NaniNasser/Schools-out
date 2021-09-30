@@ -40,7 +40,7 @@ public class ExamDAO implements IDAO<Exam> {
     @Override
     public List<Exam> findAll() {
         EntityManager em = getEntityManager(emf);
-        TypedQuery<Exam> query = em.createQuery("SELECT p FROM Course p", Exam.class);
+        TypedQuery<Exam> query = em.createQuery("SELECT p FROM Exam p", Exam.class);
         List<Exam> list = query.getResultList();
         em.close();
         return list;

@@ -40,7 +40,7 @@ public class PersonDAO implements schoolsout.daos.IDAO<Person> {
     @Override
     public List<Person> findAll() {
         EntityManager em = getEntityManager(emf);
-        TypedQuery<Person> query = em.createQuery("SELECT p FROM person p", Person.class);
+        TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p", Person.class);
         List<Person> list = query.getResultList();
         em.close();
         return list;

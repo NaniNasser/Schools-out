@@ -15,7 +15,7 @@ public class Module {
     @ManyToOne
     private Course course;
 
-    @OneToMany(mappedBy = "module")
+    @OneToMany(mappedBy = "module", fetch = FetchType.EAGER, cascade = { CascadeType.MERGE, CascadeType.PERSIST })
     private List<Exam> exams;
 
     public Module(String name, String description, Course course, List<Exam> exams) {
@@ -25,7 +25,8 @@ public class Module {
         this.exams = exams;
     }
 
-
+    public Module() {
+    }
 
     public Long getId() {
         return id;
@@ -70,11 +71,11 @@ public class Module {
 
     @Override
     public String toString() {
-        return "schoolsout.models.Module{" +
+        return "Module{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", course=" + course +
+                ", course=" + (course != null ? course.getName() : null) +
                 ", exams=" + exams +
                 '}';
     }

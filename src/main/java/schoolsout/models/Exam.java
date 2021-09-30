@@ -1,10 +1,8 @@
 package schoolsout.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
+import schoolsout.models.Module;
 
 @Entity
 public class Exam {
@@ -14,14 +12,17 @@ public class Exam {
     private Long id;
 
     private String name;
+    @Column(length = 2000)
     private String description;
     private LocalDate date;
     private int weight;
     private int total;
-    @ManyToOne
-    private schoolsout.models.Module module;
 
-    public Exam(String name, String description, LocalDate date, int weight, int total, schoolsout.models.Module module) {
+    @ManyToOne
+    private Module module;
+
+    public Exam() {}
+    public Exam(String name, String description, LocalDate date, int weight, int total, Module module) {
         this.name = name;
         this.description = description;
         this.date = date;
@@ -96,7 +97,7 @@ public class Exam {
                 ", date=" + date +
                 ", weight=" + weight +
                 ", total=" + total +
-                ", module=" + module +
+                ", module=" + (module == null ? null : module.getName()) +
                 '}';
     }
 }

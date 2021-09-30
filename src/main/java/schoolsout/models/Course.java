@@ -12,12 +12,13 @@ public class Course {
     @GeneratedValue
     private Long id;
     private String name;
+    @Column(length = 2000)
     private String description;
     private String code;
     private String imageURL;
     private boolean active;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
     private List<Module> modules;
 
     public Course(String name, String description, String code, String imageURL, boolean active, List<Module> modules) {
@@ -30,6 +31,9 @@ public class Course {
         this.modules = modules;
     }
 
+    public Course(){
+
+    }
 
 
     public Long getId() {
@@ -91,7 +95,7 @@ public class Course {
 
     @Override
     public String toString() {
-        return "schoolsout.models.Course{" +
+        return "Course{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
