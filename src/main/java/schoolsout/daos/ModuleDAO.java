@@ -8,8 +8,8 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class ModuleDAO implements IDAO<Module>{
-    private EntityManagerFactory emf;
 
+    private EntityManagerFactory emf;
     public ModuleDAO(EntityManagerFactory emf){
         this.emf = emf;
     }
@@ -32,7 +32,6 @@ public class ModuleDAO implements IDAO<Module>{
         em.close();
         return module;
     }
-    
 
     @Override
     public Module findById(Object id) {

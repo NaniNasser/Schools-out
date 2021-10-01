@@ -10,7 +10,6 @@ import java.util.List;
 public class CourseDAO implements schoolsout.daos.IDAO<Course> {
 
     private EntityManagerFactory emf;
-
     public CourseDAO(EntityManagerFactory emf) {
         this.emf = emf;
     }
@@ -25,8 +24,6 @@ public class CourseDAO implements schoolsout.daos.IDAO<Course> {
         }
         em.close();
     }
-
-
 
     @Override
     public Course findById(Object id) {
@@ -45,9 +42,6 @@ public class CourseDAO implements schoolsout.daos.IDAO<Course> {
         return list;
     }
 
-
-
-
     @Override
     public void update(Course course) {
         EntityManager em = getEntityManager(emf);
@@ -58,7 +52,6 @@ public class CourseDAO implements schoolsout.daos.IDAO<Course> {
         }
         em.close();
     }
-
 
     @Override
     public void remove(Course course) {

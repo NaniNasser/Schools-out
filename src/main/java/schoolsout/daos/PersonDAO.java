@@ -15,9 +15,6 @@ public class PersonDAO implements schoolsout.daos.IDAO<Person> {
         this.emf = emf;
     }
 
-
-
-
     @Override
     public void save(Person person) {
         EntityManager em = getEntityManager(emf);
@@ -46,9 +43,6 @@ public class PersonDAO implements schoolsout.daos.IDAO<Person> {
         return list;
     }
 
-
-
-
     @Override
     public void update(Person person) {
         EntityManager em = getEntityManager(emf);
@@ -59,7 +53,6 @@ public class PersonDAO implements schoolsout.daos.IDAO<Person> {
         }
         em.close();
     }
-
 
     @Override
     public void remove(Person person) {

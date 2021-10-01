@@ -18,16 +18,9 @@ public class MainTest {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("datasource");
 
         Person person = new Person();
-
-
         CourseDAO courseDAO = new CourseDAO(emf);
-
-
         ModuleDAO moduleDAO = new ModuleDAO(emf);
-
-
         ExamDAO examDAO = new ExamDAO(emf);
-
         PersonDAO personDAO = new PersonDAO(emf);
 
 

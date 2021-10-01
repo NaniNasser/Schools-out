@@ -11,7 +11,6 @@ import java.util.List;
 public class ExamDAO implements IDAO<Exam> {
 
     private EntityManagerFactory emf;
-
     public ExamDAO(EntityManagerFactory emf) {
         this.emf = emf;
     }
@@ -26,8 +25,6 @@ public class ExamDAO implements IDAO<Exam> {
         }
         em.close();
     }
-
-
 
     @Override
     public Exam findById(Object id) {
@@ -46,9 +43,6 @@ public class ExamDAO implements IDAO<Exam> {
         return list;
     }
 
-
-
-
     @Override
     public void update(Exam exam) {
         EntityManager em = getEntityManager(emf);
@@ -59,7 +53,6 @@ public class ExamDAO implements IDAO<Exam> {
         }
         em.close();
     }
-
 
     @Override
     public void remove(Exam exam) {
