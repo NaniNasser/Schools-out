@@ -103,14 +103,14 @@ public class MainTest {
         module6 = moduleDAO.smartSave(module6);
         module7 = moduleDAO.smartSave(module7);
 
-        Exam exam0 = new Exam("Fundamentals Test","you noobs are going down", LocalDate.of(2022,8,07),77,100,module0);
-        Exam exam1 = new Exam("Boxing Test","2 Sparring rounds boxing 40%", LocalDate.of(2022,8,07),77,100,module1);
-        Exam exam2 = new Exam("Wrestling Test","2 Sparring Rounds wrestling 50%", LocalDate.of(2022,8,07),77,100,module2);
-        Exam exam3 = new Exam("UFC Test","4 Sparring rounds UFC 30%", LocalDate.of(2022,8,07),77,100,module3);
-        Exam exam4 = new Exam("Judo Test","3 Throws, 4 Defense counter-attacks 70%", LocalDate.of(2022,8,07),77,100,module4);
-        Exam exam5 = new Exam("Krav Maga Test","3 Techniques 100%, 4 Counter-Attacks 30%", LocalDate.of(2022,8,07),77,100,module5);
-        Exam exam6 = new Exam("Thai Box Test","4 High Kicks 80%, 2 Sparring rounds 50%", LocalDate.of(2022,8,07),77,100,module6);
-        Exam exam7 = new Exam("Kick Box Test","3 High Kicks 80%, 2 Elbows 100%, 2 Throws 50%, 1 Sparring round 70%", LocalDate.of(2022,8,07),77,100,module7);
+        Exam exam0 = new Exam("Fundamentals Exam","you noobs are going down", LocalDate.of(2022,8,07),77,100,module0);
+        Exam exam1 = new Exam("Boxing Exam","2 Sparring rounds boxing 40%", LocalDate.of(2022,8,07),77,100,module1);
+        Exam exam2 = new Exam("Wrestling Exam","2 Sparring Rounds wrestling 50%", LocalDate.of(2022,8,07),77,100,module2);
+        Exam exam3 = new Exam("UFC Exam","4 Sparring rounds UFC 30%", LocalDate.of(2022,8,07),77,100,module3);
+        Exam exam4 = new Exam("Judo Exam","3 Throws, 4 Defense counter-attacks 70%", LocalDate.of(2022,8,07),77,100,module4);
+        Exam exam5 = new Exam("Krav Maga Exam","3 Techniques 100%, 4 Counter-Attacks 30%", LocalDate.of(2022,8,07),77,100,module5);
+        Exam exam6 = new Exam("Thai Box Exam","4 High Kicks 80%, 2 Sparring rounds 50%", LocalDate.of(2022,8,07),77,100,module6);
+        Exam exam7 = new Exam("Kick Box Exam","3 High Kicks 80%, 2 Elbows 100%, 2 Throws 50%, 1 Sparring round 70%", LocalDate.of(2022,8,07),77,100,module7);
 
         List<Exam> exams = List.of(exam0,exam1,exam3,exam4,exam5,exam6,exam7);
         module0.setExams(exams.subList(1,6));
