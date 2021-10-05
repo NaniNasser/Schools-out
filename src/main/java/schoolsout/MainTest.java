@@ -46,29 +46,7 @@ public class MainTest {
         personDAO.save(person9);
         personDAO.save(person10);
 
-        User user0 = new User("Morty","Jassica",true,person);
-        User user1 = new User("Lord","Iamthelord",true,person);
-        User user2 = new User("Nani","Poonani",true,person);
-        User user3 = new User("Tupac","thuglife",true,person);
-        User user4 = new User("Biggie","kickinthedoor",true,person);
-        User user5 = new User("Scarlet","blackwidow",true,person);
-        User user6 = new User("GROOT","iamgroot",true,person);
-        User user7 = new User("Spongebob","krabbypatty",true,person);
-        User user8 = new User("Nero","Mero",true,person);
-        User user9 = new User("Tosca","cutiee",true,person);
-        User user10 = new User("Saul","isallgoodman",true,person);
 
-        userDAO.save(user0);
-        userDAO.save(user1);
-        userDAO.save(user2);
-        userDAO.save(user3);
-        userDAO.save(user4);
-        userDAO.save(user5);
-        userDAO.save(user6);
-        userDAO.save(user7);
-        userDAO.save(user8);
-        userDAO.save(user9);
-        userDAO.save(user10);
 
         Course course0 = new Course("Java EE"," Java EE offers a rich enterprise software platform and with over 20 compliant Java EE implementations to choose from.","01","https://blogs.sap.com/wp-content/uploads/2017/07/JavaEE.png",true,null);
         Course course1 = new Course("Boxing"," Boxing is a combat sport in which two people, usually wearing protective gloves and other protective equipment such as hand wraps and mouthguards, throw punches at each other for a predetermined amount of time in a boxing ring.","02","https://upload.wikimedia.org/wikipedia/commons/2/2a/Boxing_Tournament_in_Aid_of_King_George%27s_Fund_For_Sailors_at_the_Royal_Naval_Air_Station%2C_Henstridge%2C_Somerset%2C_July_1945_A29806.jpg",true,null);
@@ -181,7 +159,29 @@ public class MainTest {
         courseDAO.update(courseFromDB6);
 
 
+        User user0 = new User("Morty","Jassica",true,person0);
+        User user1 = new User("Lord","Iamthelord",true,person1);
+        User user2 = new User("Nani","Poonani",true,person2);
+        User user3 = new User("Tupac","thuglife",true,person3);
+        User user4 = new User("Biggie","kickinthedoor",true,person4);
+        User user5 = new User("Scarlet","blackwidow",true,person5);
+        User user6 = new User("GROOT","iamgroot",true,person6);
+        User user7 = new User("Spongebob","krabbypatty",true,person7);
+        User user8 = new User("Nero","Mero",true,person8);
+        User user9 = new User("Tosca","cutiee",true,person9);
+        User user10 = new User("Saul","isallgoodman",true,person10);
 
+        userDAO.save(user0);
+        userDAO.save(user1);
+        userDAO.save(user2);
+        userDAO.save(user3);
+        userDAO.save(user4);
+        userDAO.save(user5);
+        userDAO.save(user6);
+        userDAO.save(user7);
+        userDAO.save(user8);
+        userDAO.save(user9);
+        userDAO.save(user10);
 
 
         moduleFromDB.forEach(System.out::println);
