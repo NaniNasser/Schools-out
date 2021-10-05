@@ -28,14 +28,14 @@ public class UserDAO implements IDAO<User>{
         em.close();
     }
 
-    public Module smartSave(Module module) {
+    public User smartSave(User user) {
         EntityManager em = getEntityManager(emf);
         em.getTransaction().begin();
-        em.persist(module);
+        em.persist(user);
         em.flush();
         em.getTransaction().commit();
         em.close();
-        return module;
+        return user;
     }
 
     @Override

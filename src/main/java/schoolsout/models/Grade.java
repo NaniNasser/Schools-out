@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "Module")
+@Table(name = "Grade")
 public class Grade {
     @Id
     @GeneratedValue
@@ -14,6 +14,7 @@ public class Grade {
 
     @ManyToOne
     private Person person;
+    @ManyToOne
     private Exam exam;
 
     private BigDecimal gradeValue;
