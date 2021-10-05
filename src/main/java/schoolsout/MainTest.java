@@ -1,9 +1,6 @@
 package schoolsout;
 
-import schoolsout.daos.CourseDAO;
-import schoolsout.daos.ExamDAO;
-import schoolsout.daos.ModuleDAO;
-import schoolsout.daos.PersonDAO;
+import schoolsout.daos.*;
 import schoolsout.models.*;
 import schoolsout.models.Module;
 
@@ -22,7 +19,7 @@ public class MainTest {
         ModuleDAO moduleDAO = new ModuleDAO(emf);
         ExamDAO examDAO = new ExamDAO(emf);
         PersonDAO personDAO = new PersonDAO(emf);
-
+        UserDAO userDAO = new UserDAO(emf);
 
 
         Person person0 = new Person("Morty", "Rick", Gender.MALE, person.getCourse());
@@ -33,8 +30,8 @@ public class MainTest {
         Person person5 = new Person("Scarlet", "Johansson", Gender.FEMALE, person.getCourse());
         Person person6 = new Person("I AM ", "GROOT", Gender.OTHER, person.getCourse());
         Person person7 = new Person("Spongebob ", "Squarespace", Gender.OTHER, person.getCourse());
-        Person person8 = new Person("Nero ", "GoodBoi", Gender.MALE, person.getCourse());
-        Person person9 = new Person("Tosca ", "GoodGirl", Gender.FEMALE, person.getCourse());
+        Person person8 = new Person("Nero", "GoodBoi", Gender.MALE, person.getCourse());
+        Person person9 = new Person("Tosca", "GoodGirl", Gender.FEMALE, person.getCourse());
         Person person10 = new Person("Saul", "Goodman", Gender.MALE, person.getCourse());
 
         personDAO.save(person0);
@@ -48,6 +45,30 @@ public class MainTest {
         personDAO.save(person8);
         personDAO.save(person9);
         personDAO.save(person10);
+
+        User user0 = new User("Morty","Jassica",true,person);
+        User user1 = new User("Lord","Iamthelord",true,person);
+        User user2 = new User("Nani","Poonani",true,person);
+        User user3 = new User("Tupac","thuglife",true,person);
+        User user4 = new User("Biggie","kickinthedoor",true,person);
+        User user5 = new User("Scarlet","blackwidow",true,person);
+        User user6 = new User("GROOT","iamgroot",true,person);
+        User user7 = new User("Spongebob","krabbypatty",true,person);
+        User user8 = new User("Nero","Mero",true,person);
+        User user9 = new User("Tosca","cutiee",true,person);
+        User user10 = new User("Saul","isallgoodman",true,person);
+
+        userDAO.save(user0);
+        userDAO.save(user1);
+        userDAO.save(user2);
+        userDAO.save(user3);
+        userDAO.save(user4);
+        userDAO.save(user5);
+        userDAO.save(user6);
+        userDAO.save(user7);
+        userDAO.save(user8);
+        userDAO.save(user9);
+        userDAO.save(user10);
 
         Course course0 = new Course("Java EE"," Java EE offers a rich enterprise software platform and with over 20 compliant Java EE implementations to choose from.","01","https://blogs.sap.com/wp-content/uploads/2017/07/JavaEE.png",true,null);
         Course course1 = new Course("Boxing"," Boxing is a combat sport in which two people, usually wearing protective gloves and other protective equipment such as hand wraps and mouthguards, throw punches at each other for a predetermined amount of time in a boxing ring.","02","https://upload.wikimedia.org/wikipedia/commons/2/2a/Boxing_Tournament_in_Aid_of_King_George%27s_Fund_For_Sailors_at_the_Royal_Naval_Air_Station%2C_Henstridge%2C_Somerset%2C_July_1945_A29806.jpg",true,null);
@@ -158,6 +179,9 @@ public class MainTest {
         courseDAO.update(courseFromDB4);
         courseDAO.update(courseFromDB5);
         courseDAO.update(courseFromDB6);
+
+
+
 
 
         moduleFromDB.forEach(System.out::println);
