@@ -184,6 +184,7 @@ public class MainTest {
         userDAO.save(user9);
         userDAO.save(user10);
 
+userDAO.update(user1.setLogin("this is a test"));
 
         moduleFromDB.forEach(System.out::println);
 
@@ -194,6 +195,8 @@ public class MainTest {
 
         List<Person> personsFromDB = personDAO.findAll();
         personsFromDB.forEach(System.out::println);
+
+
 
     }
 }

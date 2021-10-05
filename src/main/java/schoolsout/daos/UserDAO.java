@@ -9,7 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class UserDAO implements IDAO<User>{
+public class UserDAO implements IDAO<User> {
 
     private EntityManagerFactory emf;
 
@@ -27,8 +27,7 @@ public class UserDAO implements IDAO<User>{
             em.getTransaction().commit();
 
             em.close();
-        }
-       else System.out.println("User does not exist");
+        } else System.out.println("User does not exist");
     }
 
 
@@ -40,9 +39,12 @@ public class UserDAO implements IDAO<User>{
             em.flush();
             em.getTransaction().commit();
             em.close();
-            return user;
+
         }
+        return user;
     }
+
+
 
     @Override
     public User findById(Object id) {
@@ -66,7 +68,7 @@ public class UserDAO implements IDAO<User>{
     public void update(User user) {
         if (findById(user.getLogin()) != null){
             EntityManager em = getEntityManager(emf);
-
+            em.persist(em.contains(user) ? user : em.merge(user));
             em.getTransaction().begin();
             em.merge(user);
             em.getTransaction().commit();

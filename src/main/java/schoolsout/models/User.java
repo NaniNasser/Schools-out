@@ -24,38 +24,44 @@ public class User {
         this.person = person;
     }
 
+    public User() {
 
+    }
 
     public String getLogin() {
         return login;
     }
 
-    public void setLogin(String login) {
+    public User setLogin(String login) {
         this.login = login;
+        return this;
     }
 
     public String getPasswordHash() {
         return passwordHash;
     }
 
-    public void setPasswordHash(String passwordHash) {
+    public User setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
+        return this;
     }
 
     public boolean isActive() {
         return active;
     }
 
-    public void setActive(boolean active) {
+    public User setActive(boolean active) {
         this.active = active;
+        return this;
     }
 
-    public schoolsout.models.Person getPerson() {
+    public Person getPerson() {
         return person;
     }
 
-    public void setPerson(schoolsout.models.Person person) {
+    public User setPerson(schoolsout.models.Person person) {
         this.person = person;
+        return this;
     }
 
     @Override
