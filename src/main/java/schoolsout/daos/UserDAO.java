@@ -1,5 +1,6 @@
 package schoolsout.daos;
 
+import schoolsout.models.Module;
 import schoolsout.models.Person;
 import schoolsout.models.User;
 
@@ -19,12 +20,22 @@ public class UserDAO implements IDAO<User>{
     @Override
     public void save(User user) {
         EntityManager em = getEntityManager(emf);
-        if (user.getLogin() == null) {
+        {
             em.getTransaction().begin();
             em.persist(user);
             em.getTransaction().commit();
         }
         em.close();
+    }
+
+    public Module smartSave(Module module) {
+        EntityManager em = getEntityManager(emf);
+        em.getTransaction().begin();
+        em.persist(module);
+        em.flush();
+        em.getTransaction().commit();
+        em.close();
+        return module;
     }
 
     @Override
@@ -47,7 +58,7 @@ public class UserDAO implements IDAO<User>{
     @Override
     public void update(User user) {
         EntityManager em = getEntityManager(emf);
-        if (user.getLogin() != null){
+       {
             em.getTransaction().begin();
             em.merge(user);
             em.getTransaction().commit();
@@ -58,7 +69,7 @@ public class UserDAO implements IDAO<User>{
     @Override
     public void remove(User user) {
         EntityManager em = getEntityManager(emf);
-        if (user.getLogin() != null){
+        {
             em.getTransaction().begin();
             em.remove(em.contains(user) ? user : em.merge(user));
             em.flush();

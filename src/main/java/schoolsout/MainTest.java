@@ -71,6 +71,7 @@ public class MainTest {
 //        courseFromDB.forEach(System.out::println);
         System.out.println("fetching courses");
 
+
         Course courseFromDB1 = courseFromDB.get(1);
         Course courseFromDB5 = courseFromDB.get(5);
         Course courseFromDB0 = courseFromDB.get(0);
@@ -80,7 +81,7 @@ public class MainTest {
         Course courseFromDB6 = courseFromDB.get(6);
 
 
-        Module module0 = new Module("Hoofdstuk 1","Welcome to the world of Java programming! ", courseFromDB1, null);
+        Module module0 = new Module("Hoofdstuk 1","Welcome to the world of Java programming! ", courseFromDB0, null);
         Module module1 = new Module("Hoofdstuk 2","Programming languages enable humans to write instructions that a computer can perform.", courseFromDB5,null);
         Module module2 = new Module("Hoofdstuk 3","With precise instructions, computers coordinate applications and systems that run the modern world.", courseFromDB0,null );
         Module module3 = new Module("Hoofdstuk 4","Having some fun, stimulating your mind, gaining an edge at work, or even starting a career in software engineering", courseFromDB2,null );
@@ -193,9 +194,6 @@ public class MainTest {
 
         List<Person> personsFromDB = personDAO.findAll();
         personsFromDB.forEach(System.out::println);
-
-
-
 
     }
 }
