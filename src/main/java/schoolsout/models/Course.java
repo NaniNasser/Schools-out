@@ -85,11 +85,11 @@ public class Course {
         this.active = active;
     }
 
-    public List<schoolsout.models.Module> getModules() {
+    public List<Module> getModules() {
         return modules;
     }
 
-    public void setModules(List<schoolsout.models.Module> modules) {
+    public void setModules(List<Module> modules) {
         this.modules = modules;
     }
 
