@@ -66,13 +66,11 @@ public class User {
 
     @Override
     public String toString() {
-        return "schoolsout.models.User{" +
+        return "User{" +
                 "login='" + login + '\'' +
                 ", passwordHash='" + passwordHash + '\'' +
                 ", active=" + active +
                 ", person=" + person +
                 '}';
     }
-
-
 }

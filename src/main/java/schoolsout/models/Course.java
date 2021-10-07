@@ -1,5 +1,7 @@
 package schoolsout.models;
 
+import schoolsout.daos.CourseDAO;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,11 +20,12 @@ public class Course {
     private String code;
     private String imageURL;
     private boolean active;
+    private List<Course> courseHistory;
 
     @OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
     private List<Module> modules;
 
-    public Course(String name, String description, String code, String imageURL, boolean active, List<Module> modules) {
+    public Course(String name, String description, String code, String imageURL, boolean active, List<Module> modules, List<Course> courseHistory) {
 
         this.name = name;
         this.description = description;
@@ -30,12 +33,20 @@ public class Course {
         this.imageURL = imageURL;
         this.active = active;
         this.modules = modules;
+        this.courseHistory = courseHistory;
     }
 
-    public Course(){
+    public Course() {
 
     }
 
+    public List<Course> getCourseHistory() {
+        return courseHistory;
+    }
+
+    public void setCourseHistory(List<Course> courseHistory) {
+        this.courseHistory = courseHistory;
+    }
 
     public Long getId() {
         return id;
@@ -93,7 +104,6 @@ public class Course {
         this.modules = modules;
     }
 
-
     @Override
     public String toString() {
         return "Course{" +
@@ -103,7 +113,9 @@ public class Course {
                 ", code='" + code + '\'' +
                 ", imageURL='" + imageURL + '\'' +
                 ", active=" + active +
+                ", courseHistory=" + courseHistory +
                 ", modules=" + modules +
                 '}';
     }
 }
+

@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class MainTest {
+
     public static void main(String[] args) {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("datasource");
@@ -48,7 +49,7 @@ public class MainTest {
 
 
 
-        Course course0 = new Course("Java EE"," Java EE offers a rich enterprise software platform and with over 20 compliant Java EE implementations to choose from.","01","https://blogs.sap.com/wp-content/uploads/2017/07/JavaEE.png",true,null);
+        Course course0 = new Course("Java EE"," Java EE offers a rich enterprise software platform and with over 20 compliant Java EE implementations to choose from.","01","https://blogs.sap.com/wp-content/uploads/2017/07/JavaEE.png",true,null,List<Course>.setCourseHistory(Course.class););
         Course course1 = new Course("Boxing"," Boxing is a combat sport in which two people, usually wearing protective gloves and other protective equipment such as hand wraps and mouthguards, throw punches at each other for a predetermined amount of time in a boxing ring.","02","https://upload.wikimedia.org/wikipedia/commons/2/2a/Boxing_Tournament_in_Aid_of_King_George%27s_Fund_For_Sailors_at_the_Royal_Naval_Air_Station%2C_Henstridge%2C_Somerset%2C_July_1945_A29806.jpg",true,null);
         Course course2 = new Course("Wrestling","Wrestling is a combat sport involving grappling-type techniques such as clinch fighting, throws and takedowns, joint locks, pins and other grappling holds. ","03","https://upload.wikimedia.org/wikipedia/commons/8/84/Wrestling_at_the_2016_Summer_Olympics%2C_Gazyumov_vs_Andriitsev_6.jpg",true,null);
         Course course3 = new Course("UFC","Ultimate Fighting Championship (UFC) is de grootste mixed-martial-artsorganisatie ter wereld.","04","https://upload.wikimedia.org/wikipedia/commons/a/aa/UFC_74_Respect_Bout.jpg",true,null);
@@ -159,7 +160,6 @@ public class MainTest {
         courseDAO.update(courseFromDB5);
         courseDAO.update(courseFromDB6);
 
-
         User user0 = new User("Morty","Jassica",true,person0);
         User user1 = new User("Lord","Iamthelord",true,person1);
         User user2 = new User("Nani","Poonani",true,person2);
@@ -184,14 +184,12 @@ public class MainTest {
         userDAO.save(user9);
         userDAO.save(user10);
 
-userDAO.update(user1.setLogin("this is a test"));
+       userDAO.update(user1.setLogin("test3 test"));
 
         moduleFromDB.forEach(System.out::println);
-
 
         List<Exam> examFromDB = examDAO.findAll();
         moduleFromDB.forEach(System.out::println);
-
 
         List<Person> personsFromDB = personDAO.findAll();
         personsFromDB.forEach(System.out::println);

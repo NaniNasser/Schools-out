@@ -5,7 +5,7 @@ import schoolsout.models.Course;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
-import java.util.List;
+import java.util.*;
 
 public class CourseDAO implements schoolsout.daos.IDAO<Course> {
 
@@ -63,6 +63,14 @@ public class CourseDAO implements schoolsout.daos.IDAO<Course> {
             em.getTransaction().commit();
         }
         em.close();
+    }
+
+    @Override
+    public List<Course>(Course course){
+        List<Course> courseHistoryList = new ArrayList<>() {
+
+
+        };
     }
 }
 
