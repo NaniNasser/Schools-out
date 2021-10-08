@@ -25,7 +25,7 @@ public class Course {
     @OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
     private List<Module> modules;
 
-    public Course(String name, String description, String code, String imageURL, boolean active, List<Module> modules, List<Course> courseHistory) {
+    public Course(String name, String description, String code, String imageURL, boolean active, List<Module> modules) {
 
         this.name = name;
         this.description = description;
@@ -33,19 +33,11 @@ public class Course {
         this.imageURL = imageURL;
         this.active = active;
         this.modules = modules;
-        this.courseHistory = courseHistory;
+
     }
 
     public Course() {
 
-    }
-
-    public List<Course> getCourseHistory() {
-        return courseHistory;
-    }
-
-    public void setCourseHistory(List<Course> courseHistory) {
-        this.courseHistory = courseHistory;
     }
 
     public Long getId() {

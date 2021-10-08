@@ -22,64 +22,28 @@ public class MainTest {
         PersonDAO personDAO = new PersonDAO(emf);
         UserDAO userDAO = new UserDAO(emf);
 
-
-        Person person0 = new Person("Morty", "Rick", Gender.MALE, person.getCourse());
-        Person person1 = new Person("Lord", "Kek", Gender.OTHER, person.getCourse());
-        Person person2 = new Person("Nani", "Poonani", Gender.MALE, person.getCourse());
-        Person person3 = new Person("Tupac", "Shakur", Gender.MALE, person.getCourse());
-        Person person4 = new Person("Biggie", "Smalls", Gender.MALE, person.getCourse());
-        Person person5 = new Person("Scarlet", "Johansson", Gender.FEMALE, person.getCourse());
-        Person person6 = new Person("I AM ", "GROOT", Gender.OTHER, person.getCourse());
-        Person person7 = new Person("Spongebob ", "Squarespace", Gender.OTHER, person.getCourse());
-        Person person8 = new Person("Nero", "GoodBoi", Gender.MALE, person.getCourse());
-        Person person9 = new Person("Tosca", "GoodGirl", Gender.FEMALE, person.getCourse());
-        Person person10 = new Person("Saul", "Goodman", Gender.MALE, person.getCourse());
-
-        personDAO.save(person0);
-        personDAO.save(person1);
-        personDAO.save(person2);
-        personDAO.save(person3);
-        personDAO.save(person4);
-        personDAO.save(person5);
-        personDAO.save(person6);
-        personDAO.save(person7);
-        personDAO.save(person8);
-        personDAO.save(person9);
-        personDAO.save(person10);
+        List<Course> courses = DataFactory.getCourses();
 
 
 
-        Course course0 = new Course("Java EE"," Java EE offers a rich enterprise software platform and with over 20 compliant Java EE implementations to choose from.","01","https://blogs.sap.com/wp-content/uploads/2017/07/JavaEE.png",true,null,List<Course>.setCourseHistory(Course.class););
-        Course course1 = new Course("Boxing"," Boxing is a combat sport in which two people, usually wearing protective gloves and other protective equipment such as hand wraps and mouthguards, throw punches at each other for a predetermined amount of time in a boxing ring.","02","https://upload.wikimedia.org/wikipedia/commons/2/2a/Boxing_Tournament_in_Aid_of_King_George%27s_Fund_For_Sailors_at_the_Royal_Naval_Air_Station%2C_Henstridge%2C_Somerset%2C_July_1945_A29806.jpg",true,null);
-        Course course2 = new Course("Wrestling","Wrestling is a combat sport involving grappling-type techniques such as clinch fighting, throws and takedowns, joint locks, pins and other grappling holds. ","03","https://upload.wikimedia.org/wikipedia/commons/8/84/Wrestling_at_the_2016_Summer_Olympics%2C_Gazyumov_vs_Andriitsev_6.jpg",true,null);
-        Course course3 = new Course("UFC","Ultimate Fighting Championship (UFC) is de grootste mixed-martial-artsorganisatie ter wereld.","04","https://upload.wikimedia.org/wikipedia/commons/a/aa/UFC_74_Respect_Bout.jpg",true,null);
-        Course course4 = new Course("Judo","Judo (Japans: 柔道, じゅうどう, jūdō[1]) is een van oorsprong Japanse zelfverdedigingskunst, die rond 1882 werd ontworpen door Jigoro Kano.","05","https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Jigoro_Kano_and_Kyuzo_Mifune.jpg/260px-Jigoro_Kano_and_Kyuzo_Mifune.jpg",true,null);
-        Course course5 = new Course("Krav Maga","Krav maga (Hebreeuws: קרב מגע, contactgevecht) is een verdedigingskunst die zijn oorsprong heeft in Tsjecho-Slowakije en Israël. ","06","https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Krav_Maga_Marines.jpg/1280px-Krav_Maga_Marines.jpg",true,null);
-        Course course6 = new Course("Thai Box","Thai boxing (or Muay Thai) is a combat sport (martial art) that has been developed in Thailand. It is known also as \"the art of eight limbs\", because both hands, elbows, knees, and legs can be used to attack an opponent.","07","https://blogs.sap.com/wp-content/uploads/2017/07/JavaEE.png",true,null);
-        Course course7 = new Course("Kick Box","Kickboxing is a group of stand-up combat sports based on kicking and punching, historically developed from karate mixed with boxing.","08","https://blogs.sap.com/wp-content/uploads/2017/07/JavaEE.png",true,null);
+        for (Course course : courses) {
+            courseDAO.save(course);
+        }
 
-        courseDAO.save(course0);
-        courseDAO.save(course1);
-        courseDAO.save(course2);
-        courseDAO.save(course3);
-        courseDAO.save(course4);
-        courseDAO.save(course5);
-        courseDAO.save(course6);
-        courseDAO.save(course7);
         System.out.println("saving courses");
 
+
         List<Course> courseFromDB = courseDAO.findAll();
-//        courseFromDB.forEach(System.out::println);
+
         System.out.println("fetching courses");
 
 
-        Course courseFromDB1 = courseFromDB.get(1);
-        Course courseFromDB5 = courseFromDB.get(5);
-        Course courseFromDB0 = courseFromDB.get(0);
-        Course courseFromDB2 = courseFromDB.get(2);
-        Course courseFromDB3 = courseFromDB.get(3);
-        Course courseFromDB4 = courseFromDB.get(4);
-        Course courseFromDB6 = courseFromDB.get(6);
+        List<Person> students = DataFactory.getStudents(courseFromDB);
+        students.forEach(personDAO::save);
+
+
+
+
 
 
         Module module0 = new Module("Hoofdstuk 1","Welcome to the world of Java programming! ", courseFromDB0, null);
@@ -193,6 +157,8 @@ public class MainTest {
 
         List<Person> personsFromDB = personDAO.findAll();
         personsFromDB.forEach(System.out::println);
+
+        List<Course> courseHistory = course;
 
 
 

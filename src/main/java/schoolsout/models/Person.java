@@ -1,6 +1,8 @@
 package schoolsout.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Persons")
@@ -16,15 +18,18 @@ public class Person {
     private String familyName;
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Course course;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Course courseActive;
 
-    public Person(String firstName, String familyName, Gender gender, Course course) {
+    @ManyToMany
+    List<Course> courseHistory = new ArrayList<>();
 
+    public Person(String firstName, String familyName, Gender gender, Course courseActive, List<Course> courseHistory) {
         this.firstName = firstName;
         this.familyName = familyName;
         this.gender = gender;
-        this.course = course;
+        this.courseActive = courseActive;
+        this.courseHistory = courseHistory;
     }
 
     public Person() {
@@ -35,40 +40,54 @@ public class Person {
         return id;
     }
 
-    public void setId(Integer id) {
+    public Person setId(Integer id) {
         this.id = id;
+        return this;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public Person setFirstName(String firstName) {
         this.firstName = firstName;
+        return this;
     }
 
     public String getFamilyName() {
         return familyName;
     }
 
-    public void setFamilyName(String familyName) {
+    public Person setFamilyName(String familyName) {
         this.familyName = familyName;
+        return this;
     }
 
     public Gender getGender() {
         return gender;
     }
 
-    public void setGender(Gender gender) {
+    public Person setGender(Gender gender) {
         this.gender = gender;
+        return this;
     }
 
-    public Course getCourse() {
-        return course;
+    public Course getCourseActive() {
+        return courseActive;
     }
 
-    public void setCourse(Course course) {
-        this.course = course;
+    public Person setCourseActive(Course courseActive) {
+        this.courseActive = courseActive;
+        return this;
+    }
+
+    public List<Course> getCourseHistory() {
+        return courseHistory;
+    }
+
+    public Person setCourseHistory(List<Course> courseHistory) {
+        this.courseHistory = courseHistory;
+        return this;
     }
 
     @Override
@@ -78,7 +97,8 @@ public class Person {
                 ", firstName='" + firstName + '\'' +
                 ", familyName='" + familyName + '\'' +
                 ", gender=" + gender +
-                ", course=" + course +
+                ", courseActive=" + courseActive +
+                ", courseHistory=" + courseHistory +
                 '}';
     }
 }

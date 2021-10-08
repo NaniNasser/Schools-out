@@ -1,10 +1,12 @@
 package schoolsout.daos;
 
+import schoolsout.models.Course;
 import schoolsout.models.Person;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PersonDAO implements schoolsout.daos.IDAO<Person> {
@@ -65,4 +67,6 @@ public class PersonDAO implements schoolsout.daos.IDAO<Person> {
         }
         em.close();
     }
+
+
 }
