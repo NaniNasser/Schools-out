@@ -34,9 +34,9 @@ public class MainTest {
         personsFromDB.forEach(System.out::println);
 
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        List<Exam> subExamFronDB = examDAO.findAll();
-        subExamFronDB.forEach(System.out::println);
 
+        List<Exam> subExamFromDB = examDAO.findAll();
+        subExamFromDB.forEach(e -> System.out.println(e.getSubExams()));
 
 
 
@@ -61,6 +61,7 @@ public class MainTest {
         System.out.println("saving courses");
 
 
+
         List<Course> courseFromDB = courseDAO.findAll();
         courseFromDB.forEach(System.out::println);
 
@@ -68,7 +69,11 @@ public class MainTest {
 
         List<User> users = DataFactory.getUsers(students);
 
-        System.out.println("saving Users");
+
+
+
+
+                System.out.println("saving Users");
         for (User user : users) {
             userDAO.save(user);
         }
