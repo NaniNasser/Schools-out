@@ -1,6 +1,7 @@
 package schoolsout.daos;
 
 import schoolsout.models.Course;
+import schoolsout.models.Person;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -61,7 +62,13 @@ public class CourseDAO implements schoolsout.daos.IDAO<Course> {
     }
 
 
-
+    public List<Course> findAllActiveCourses() {
+        EntityManager em = getEntityManager();
+        TypedQuery<Course> query = em.createQuery("SELECT allActive FROM Course allActive WHERE allActive.active = TRUE", Course.class);
+        List<Course> list = query.getResultList();
+        em.close();
+        return list;
+    }
 
 
 }

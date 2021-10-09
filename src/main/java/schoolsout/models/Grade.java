@@ -27,64 +27,72 @@ public class Grade {
         return id;
     }
 
-    public void setId(Long id) {
+    public Grade setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public Person getPerson() {
         return person;
     }
 
-    public void setPerson(Person person) {
+    public Grade setPerson(Person person) {
         this.person = person;
+        return this;
     }
 
     public Exam getExam() {
         return exam;
     }
 
-    public void setExam(Exam exam) {
+    public Grade setExam(Exam exam) {
         this.exam = exam;
+        return this;
     }
 
     public BigDecimal getGradeValue() {
         return gradeValue;
     }
 
-    public void setGradeValue(BigDecimal gradeValue) {
+    public Grade setGradeValue(BigDecimal gradeValue) {
         this.gradeValue = gradeValue;
+        return this;
     }
 
     public String getComment() {
         return comment;
     }
 
-    public void setComment(String comment) {
+    public Grade setComment(String comment) {
         this.comment = comment;
+        return this;
     }
 
     public boolean isAbsent() {
         return absent;
     }
 
-    public void setAbsent(boolean absent) {
+    public Grade setAbsent(boolean absent) {
         this.absent = absent;
+        return this;
     }
 
     public boolean isPostponed() {
         return postponed;
     }
 
-    public void setPostponed(boolean postponed) {
+    public Grade setPostponed(boolean postponed) {
         this.postponed = postponed;
+        return this;
     }
 
     public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public Grade setDate(LocalDate date) {
         this.date = date;
+        return this;
     }
 
     @Override

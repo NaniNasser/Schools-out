@@ -118,7 +118,7 @@ public class Exam {
         return "Exam{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
+                ", description='" + (description == null ? "null'" : (description.substring(0, 7) + "...'")) +
                 ", date=" + date +
                 ", weight=" + weight +
                 ", total=" + total +

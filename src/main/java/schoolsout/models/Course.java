@@ -100,7 +100,7 @@ public class Course {
         return "Course{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
+                ", description='" + (description == null ? "null'" : (description.substring(0, 7) + "...'"))  +
                 ", code='" + code + '\'' +
                 ", imageURL='" + imageURL + '\'' +
                 ", active=" + active +

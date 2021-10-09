@@ -1,9 +1,9 @@
 package schoolsout;
 
-import org.w3c.dom.ls.LSException;
 import schoolsout.models.*;
 import schoolsout.models.Module;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,17 +33,17 @@ public class DataFactory {
             Course course = courses.get(ThreadLocalRandom.current().nextInt(0, courses.size()));
             List<Course> history = new ArrayList<>();
 
-            for(Course c : courses){
-                if(!c.equals(course)) history.add(c);
+            for (Course c : courses) {
+                if (!c.equals(course)) history.add(c);
             }
 
             people.add(
                     new Person()
-                    .setFirstName(arr[0])
-                    .setFamilyName(arr[1])
-                    .setGender(Gender.valueOf(arr[2]))
-                    .setCourseActive(course)
-                    .setCourseHistory(history)
+                            .setFirstName(arr[0])
+                            .setFamilyName(arr[1])
+                            .setGender(Gender.valueOf(arr[2]))
+                            .setCourseActive(course)
+                            .setCourseHistory(history)
             );
         }
 
@@ -88,27 +88,26 @@ public class DataFactory {
 
     private static List<Exam> getSubExams(Exam examGroup) {
         List<Exam> subExams = new ArrayList<>();
-        for (int i = 0; i < 2; i++){
+        for (int i = 0; i < 2; i++) {
             ThreadLocalRandom random = ThreadLocalRandom.current();
             Exam subExam = new Exam()
 
-                    .setDescription(descriptions[random.nextInt(0,descriptions.length)])
+                    .setDescription(descriptions[random.nextInt(0, descriptions.length)])
                     .setExamGroup(examGroup)
                     .setTotal(random.nextInt(1, 7) * 10)
                     .setWeight(random.nextInt(7) + 1)
                     .setDate(LocalDate.now().minusDays(random.nextInt(1, 5)))
-                    .setName(examGroup.getName() + " - SubExam " + ( i+1));
-                    subExams.add(subExam);
+                    .setName(examGroup.getName() + " - SubExam " + (i + 1));
+            subExams.add(subExam);
 
         }
-        return  subExams;
-        }
-
+        return subExams;
+    }
 
 
     public static List<User> getUsers(List<Person> people) {
         List<User> users = new ArrayList<>();
-        for (int i = 0; i < people.size(); i++ ){
+        for (int i = 0; i < people.size(); i++) {
             Person person = people.get(i);
             User user = getUser(person);
             users.add(user);
@@ -119,12 +118,56 @@ public class DataFactory {
 
     static User getUser(Person person) {
         StringBuilder sb = new StringBuilder((person.getFirstName()));
-        return  new User()
-                .setLogin(person.getFirstName()+"."+person.getFamilyName())
+        return new User()
+                .setLogin(person.getFirstName() + "." + person.getFamilyName())
                 .setActive(Math.random() > 0.5)
                 .setPasswordHash(sb.reverse().toString())
                 .setPerson(person);
     }
+
+    public static List<Grade> gradePerson(Person person) {
+        List<Grade> grades = new ArrayList<>();
+
+        if(person == null) return grades;
+
+        Course course = person.getCourseActive();
+        if (course != null) {
+            List<Module> modules = course.getModules();
+            for (int i = 0; i < modules.size(); i++) {
+                Module module = modules.get(i);
+                List<Exam> exams = module.getExams();
+                for (int j = 0; j < exams.size(); j++) {
+                    Exam exam = exams.get(j);
+                    grades.addAll(getGrades(person, exam));
+                }
+            }
+
+        }
+        return grades;
+    }
+
+    public static List<Grade> getGrades(Person person, Exam exam) {
+        List<Grade> grades = new ArrayList<>();
+        List<Exam> subExams = exam.getSubExams();
+
+        if (subExams != null && subExams.size() > 0) {
+            for (int i = 0; i < subExams.size(); i++) {
+                grades.addAll(getGrades(person, subExams.get(i)));
+            }
+        } else {
+            ThreadLocalRandom random = ThreadLocalRandom.current();
+            Grade grade = new Grade()
+                    .setPerson(person)
+                    .setExam(exam)
+                    .setDate(exam.getDate())
+                    .setGradeValue(BigDecimal.valueOf(random.nextDouble(0.3 , 0.7) * exam.getTotal()));
+            grades.add(grade);
+
+        }
+
+        return grades;
+    }
+
 
 
     static String[] peeps = new String[]{

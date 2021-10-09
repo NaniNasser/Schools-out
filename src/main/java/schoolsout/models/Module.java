@@ -79,7 +79,7 @@ public class Module {
         return "Module{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
+                ", description='" + (description == null ? "null'" : (description.substring(0, 7) + "...'")) +
                 ", course=" + (course != null ? course.getName() : null) +
                 ", exams=" + exams +
                 '}';
