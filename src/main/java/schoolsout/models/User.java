@@ -1,9 +1,6 @@
 package schoolsout.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "User")
@@ -14,7 +11,7 @@ public class User {
     private String passwordHash;
     private boolean active;
 
-    @OneToOne
+    @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private Person person;
 
     public User(String login, String passwordHash, boolean active, Person person) {

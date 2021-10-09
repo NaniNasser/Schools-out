@@ -9,14 +9,9 @@ import java.util.List;
 
 public class ModuleDAO implements IDAO<Module>{
 
-    private EntityManagerFactory emf;
-    public ModuleDAO(EntityManagerFactory emf){
-        this.emf = emf;
-    }
-
     @Override
     public void save(Module module) {
-        EntityManager em = getEntityManager(emf);
+        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(module);
         em.getTransaction().commit();
@@ -24,7 +19,7 @@ public class ModuleDAO implements IDAO<Module>{
     }
 
     public Module smartSave(Module module) {
-        EntityManager em = getEntityManager(emf);
+        EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(module);
         em.flush();
@@ -35,7 +30,7 @@ public class ModuleDAO implements IDAO<Module>{
 
     @Override
     public Module findById(Object id) {
-       EntityManager em = getEntityManager(emf);
+       EntityManager em = getEntityManager();
         Module module = em.find(Module.class, id);
         em.close();
         return module;
@@ -43,7 +38,7 @@ public class ModuleDAO implements IDAO<Module>{
 
     @Override
     public List<Module> findAll() {
-        EntityManager em = getEntityManager(emf);
+        EntityManager em = getEntityManager();
         TypedQuery<Module> query = em.createQuery("SELECT p FROM Module p", Module.class);
         List<Module> list = query.getResultList();
         em.close();
@@ -52,7 +47,7 @@ public class ModuleDAO implements IDAO<Module>{
 
     @Override
     public void update(Module module) {
-        EntityManager em = getEntityManager(emf);
+        EntityManager em = getEntityManager();
         if (module.getId() != null){
             em.getTransaction().begin();
             em.merge(module);
@@ -63,7 +58,7 @@ public class ModuleDAO implements IDAO<Module>{
 
     @Override
     public void remove(Module module) {
-        EntityManager em = getEntityManager(emf);
+        EntityManager em = getEntityManager();
         if (module.getId() != null){
             em.getTransaction().begin();
             em.remove(em.contains(module) ? module : em.merge(module));

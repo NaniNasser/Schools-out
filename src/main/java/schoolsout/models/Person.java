@@ -13,24 +13,17 @@ public class Person {
     @GeneratedValue
     private Integer id;
 
-
     private String firstName;
     private String familyName;
+
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    @ManyToOne(cascade = CascadeType.ALL)
+
+    @ManyToOne
     private Course courseActive;
 
     @ManyToMany
     List<Course> courseHistory = new ArrayList<>();
-
-    public Person(String firstName, String familyName, Gender gender, Course courseActive, List<Course> courseHistory) {
-        this.firstName = firstName;
-        this.familyName = familyName;
-        this.gender = gender;
-        this.courseActive = courseActive;
-        this.courseHistory = courseHistory;
-    }
 
     public Person() {
 

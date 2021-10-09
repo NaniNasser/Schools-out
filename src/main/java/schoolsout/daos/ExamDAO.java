@@ -10,14 +10,9 @@ import java.util.List;
 
 public class ExamDAO implements IDAO<Exam> {
 
-    private EntityManagerFactory emf;
-    public ExamDAO(EntityManagerFactory emf) {
-        this.emf = emf;
-    }
-
     @Override
     public void save(Exam exam) {
-        EntityManager em = getEntityManager(emf);
+        EntityManager em = getEntityManager();
         if (exam.getId() == null) {
             em.getTransaction().begin();
             em.persist(exam);
@@ -28,7 +23,7 @@ public class ExamDAO implements IDAO<Exam> {
 
     @Override
     public Exam findById(Object id) {
-        EntityManager em = getEntityManager(emf);
+        EntityManager em = getEntityManager();
         Exam exam = em.find(Exam.class, id);
         em.close();
         return exam;
@@ -36,7 +31,7 @@ public class ExamDAO implements IDAO<Exam> {
 
     @Override
     public List<Exam> findAll() {
-        EntityManager em = getEntityManager(emf);
+        EntityManager em = getEntityManager();
         TypedQuery<Exam> query = em.createQuery("SELECT p FROM Exam p", Exam.class);
         List<Exam> list = query.getResultList();
         em.close();
@@ -45,7 +40,7 @@ public class ExamDAO implements IDAO<Exam> {
 
     @Override
     public void update(Exam exam) {
-        EntityManager em = getEntityManager(emf);
+        EntityManager em = getEntityManager();
         if (exam.getId() != null){
             em.getTransaction().begin();
             em.merge(exam);
@@ -56,7 +51,7 @@ public class ExamDAO implements IDAO<Exam> {
 
     @Override
     public void remove(Exam exam) {
-        EntityManager em = getEntityManager(emf);
+        EntityManager em = getEntityManager();
         if (exam.getId() != null){
             em.getTransaction().begin();
             em.remove(em.contains(exam) ? exam : em.merge(exam));

@@ -11,15 +11,10 @@ import java.util.List;
 
 public class PersonDAO implements schoolsout.daos.IDAO<Person> {
 
-    private EntityManagerFactory emf;
-
-    public PersonDAO(EntityManagerFactory emf) {
-        this.emf = emf;
-    }
 
     @Override
     public void save(Person person) {
-        EntityManager em = getEntityManager(emf);
+        EntityManager em = getEntityManager();
         if (person.getId() == null) {
             em.getTransaction().begin();
             em.persist(person);
@@ -30,7 +25,7 @@ public class PersonDAO implements schoolsout.daos.IDAO<Person> {
 
     @Override
     public Person findById(Object id) {
-        EntityManager em = getEntityManager(emf);
+        EntityManager em = getEntityManager();
         Person person = em.find(Person.class, id);
         em.close();
         return person;
@@ -38,7 +33,7 @@ public class PersonDAO implements schoolsout.daos.IDAO<Person> {
 
     @Override
     public List<Person> findAll() {
-        EntityManager em = getEntityManager(emf);
+        EntityManager em = getEntityManager();
         TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p", Person.class);
         List<Person> list = query.getResultList();
         em.close();
@@ -47,7 +42,7 @@ public class PersonDAO implements schoolsout.daos.IDAO<Person> {
 
     @Override
     public void update(Person person) {
-        EntityManager em = getEntityManager(emf);
+        EntityManager em = getEntityManager();
         if (person.getId() != null){
             em.getTransaction().begin();
             em.merge(person);
@@ -58,7 +53,7 @@ public class PersonDAO implements schoolsout.daos.IDAO<Person> {
 
     @Override
     public void remove(Person person) {
-        EntityManager em = getEntityManager(emf);
+        EntityManager em = getEntityManager();
         if (person.getId() != null){
             em.getTransaction().begin();
             em.remove(em.contains(person) ? person : em.merge(person));
@@ -68,5 +63,15 @@ public class PersonDAO implements schoolsout.daos.IDAO<Person> {
         em.close();
     }
 
-
+    public void deactivatePerson(Person person) {
+        Person p = findById(person.getId());
+        if(p != null){
+            Course courseActive = person.getCourseActive();
+            List<Course> courseHistory = p.getCourseHistory();
+            courseHistory.add(courseActive);
+            p.setCourseHistory(courseHistory);
+            p.setCourseActive(null);
+            update(p);
+        }
+    }
 }

@@ -11,16 +11,10 @@ import java.util.List;
 
 public class UserDAO implements IDAO<User> {
 
-    private EntityManagerFactory emf;
-
-    public UserDAO(EntityManagerFactory emf) {
-        this.emf = emf;
-    }
-
     @Override
     public void save(User user) {
         if (findById(user.getLogin()) == null) {
-            EntityManager em = getEntityManager(emf);
+            EntityManager em = getEntityManager();
 
             em.getTransaction().begin();
             em.persist(user);
@@ -33,7 +27,7 @@ public class UserDAO implements IDAO<User> {
 
     public User smartSave(User user) {
         if (findById(user.getLogin()) == null) {
-            EntityManager em = getEntityManager(emf);
+            EntityManager em = getEntityManager();
             em.getTransaction().begin();
             em.persist(user);
             em.flush();
@@ -48,7 +42,7 @@ public class UserDAO implements IDAO<User> {
 
     @Override
     public User findById(Object id) {
-            EntityManager em = getEntityManager(emf);
+            EntityManager em = getEntityManager();
             User user = em.find(User.class, id);
             em.close();
             return user;
@@ -57,7 +51,7 @@ public class UserDAO implements IDAO<User> {
 
     @Override
     public List<User> findAll() {
-        EntityManager em = getEntityManager(emf);
+        EntityManager em = getEntityManager();
         TypedQuery<User> query = em.createQuery("SELECT p FROM User p", User.class);
         List<User> list = query.getResultList();
         em.close();
@@ -67,7 +61,7 @@ public class UserDAO implements IDAO<User> {
     @Override
     public void update(User user) {
         if (findById(user.getLogin()) != null){
-            EntityManager em = getEntityManager(emf);
+            EntityManager em = getEntityManager();
             em.persist(em.contains(user) ? user : em.merge(user));
             em.getTransaction().begin();
             em.merge(user);
@@ -80,7 +74,7 @@ public class UserDAO implements IDAO<User> {
     @Override
     public void remove(User user) {
         if (findById(user.getLogin()) != null) {
-            EntityManager em = getEntityManager(emf);
+            EntityManager em = getEntityManager();
 
             em.getTransaction().begin();
             em.remove(em.contains(user) ? user : em.merge(user));

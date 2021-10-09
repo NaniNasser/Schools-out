@@ -1,9 +1,10 @@
 package schoolsout;
 
-import schoolsout.models.Course;
-import schoolsout.models.Gender;
-import schoolsout.models.Person;
+import org.w3c.dom.ls.LSException;
+import schoolsout.models.*;
+import schoolsout.models.Module;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -49,6 +50,83 @@ public class DataFactory {
         return people;
     }
 
+    public static List<Module> getModules(Course course) {
+        List<Module> modules = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            Module m = new Module()
+                    .setCourse(course)
+                    .setName(course.getName() + " - Hoofdstuk " + (i + 1))
+                    .setDescription(descriptions[ThreadLocalRandom.current().nextInt(0, descriptions.length)]);
+
+            m.setExams(getExams(m));
+
+            modules.add(m);
+        }
+
+
+        return modules;
+    }
+
+    private static List<Exam> getExams(Module module) {
+        List<Exam> exams = new ArrayList<>();
+        for (int i = 0; i < 2; i++) {
+            ThreadLocalRandom random = ThreadLocalRandom.current();
+            Exam exam = new Exam()
+                    .setName(module.getName() + " - Exam " + (i + 1))
+                    .setDescription(descriptions[random.nextInt(0, descriptions.length)])
+                    .setModule(module)
+                    .setTotal(random.nextInt(1, 11) * 10)
+                    .setWeight(random.nextInt(5) + 1)
+                    .setDate(LocalDate.now().minusDays(random.nextInt(1, 77)));
+            exam.setSubExams(getSubExams(exam));
+            exams.add(exam);
+        }
+
+
+        return exams;
+    }
+
+    private static List<Exam> getSubExams(Exam examGroup) {
+        List<Exam> subExams = new ArrayList<>();
+        for (int i = 0; i < 2; i++){
+            ThreadLocalRandom random = ThreadLocalRandom.current();
+            Exam subExam = new Exam()
+
+                    .setDescription(descriptions[random.nextInt(0,descriptions.length)])
+                    .setExamGroup(examGroup)
+                    .setTotal(random.nextInt(1, 7) * 10)
+                    .setWeight(random.nextInt(7) + 1)
+                    .setDate(LocalDate.now().minusDays(random.nextInt(1, 5)))
+                    .setName(examGroup.getName() + " - SubExam " + ( i+1));
+                    subExams.add(subExam);
+
+        }
+        return  subExams;
+        }
+
+
+
+    public static List<User> getUsers(List<Person> people) {
+        List<User> users = new ArrayList<>();
+        for (int i = 0; i < people.size(); i++ ){
+            Person person = people.get(i);
+            User user = getUser(person);
+            users.add(user);
+        }
+
+        return users;
+    }
+
+    static User getUser(Person person) {
+        StringBuilder sb = new StringBuilder((person.getFirstName()));
+        return  new User()
+                .setLogin(person.getFirstName()+"."+person.getFamilyName())
+                .setActive(Math.random() > 0.5)
+                .setPasswordHash(sb.reverse().toString())
+                .setPerson(person);
+    }
+
+
     static String[] peeps = new String[]{
             "Morty_Rick_MALE",
             "Lord_Kek_OTHER",
@@ -56,11 +134,19 @@ public class DataFactory {
             "Tupac_Shakur_MALE",
             "Biggie_Smalls_MALE",
             "Scarlet_Johansson_FEMALE",
-            "I_AM_GROOT_OTHER",
+            "I_AM GROOT_OTHER",
             "Spongebob_Squarespace_OTHER",
             "Nero_GoodBoi_MALE",
             "Tosca_GoodGirl_FEMALE",
             "Saul_Goodman_MALE"
+    };
+
+    private static String[] descriptions = {
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim sed faucibus turpis in. Venenatis tellus in metus vulputate eu scelerisque felis imperdiet. Odio ut sem nulla pharetra diam sit amet nisl. Magna fringilla urna porttitor rhoncus dolor purus. Id neque aliquam vestibulum morbi. Non nisi est sit amet facilisis magna etiam. Dolor sit amet consectetur adipiscing elit duis. Nisl nunc mi ipsum faucibus vitae aliquet nec ullamcorper. Purus faucibus ornare suspendisse sed. Ornare massa eget egestas purus. Euismod quis viverra nibh cras pulvinar mattis. Consectetur adipiscing elit duis tristique sollicitudin nibh sit amet commodo. Nisi lacus sed viverra tellus in hac habitasse platea. Amet porttitor eget dolor morbi. Etiam erat velit scelerisque in dictum. Ultrices tincidunt arcu non sodales. Tortor at auctor urna nunc id cursus.",
+            "Curabitur gravida arcu ac tortor dignissim convallis. Mi in nulla posuere sollicitudin. Tortor condimentum lacinia quis vel eros donec ac odio. Feugiat nibh sed pulvinar proin gravida hendrerit. Ipsum dolor sit amet consectetur. Orci nulla pellentesque dignissim enim sit. Ac turpis egestas sed tempus urna et. Sit amet mauris commodo quis imperdiet massa tincidunt nunc pulvinar. Commodo ullamcorper a lacus vestibulum sed arcu non odio euismod. Interdum velit laoreet id donec. Adipiscing enim eu turpis egestas pretium. Duis at tellus at urna condimentum mattis. Nunc mi ipsum faucibus vitae aliquet nec ullamcorper sit. Pharetra vel turpis nunc eget lorem dolor sed.",
+            "Egestas congue quisque egestas diam in. Porttitor rhoncus dolor purus non enim praesent. A cras semper auctor neque vitae tempus quam pellentesque. Consectetur lorem donec massa sapien faucibus et molestie ac feugiat. Libero volutpat sed cras ornare arcu dui vivamus arcu. Nullam non nisi est sit amet facilisis magna. Odio ut sem nulla pharetra diam sit. Pretium lectus quam id leo in vitae turpis. Est ullamcorper eget nulla facilisi etiam dignissim diam. Eget magna fermentum iaculis eu non diam phasellus vestibulum lorem.",
+            "Eget gravida cum sociis natoque penatibus et. Morbi non arcu risus quis varius quam quisque id. A cras semper auctor neque vitae tempus. Vitae elementum curabitur vitae nunc. Tempor orci dapibus ultrices in iaculis. Scelerisque mauris pellentesque pulvinar pellentesque. Varius duis at consectetur lorem donec massa sapien faucibus. Bibendum ut tristique et egestas quis ipsum. Sed elementum tempus egestas sed sed risus pretium. Nunc mattis enim ut tellus elementum sagittis vitae. Non pulvinar neque laoreet suspendisse interdum consectetur libero. Lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit. Amet luctus venenatis lectus magna fringilla urna porttitor rhoncus. Enim tortor at auctor urna nunc id cursus metus aliquam. Eget gravida cum sociis natoque penatibus et. Mauris ultrices eros in cursus turpis massa.",
+            "Euismod nisi porta lorem mollis aliquam ut porttitor. Facilisis leo vel fringilla est. Ultrices gravida dictum fusce ut placerat orci nulla pellentesque. Eu nisl nunc mi ipsum faucibus vitae aliquet. Risus sed vulputate odio ut enim. Imperdiet sed euismod nisi porta lorem mollis aliquam ut. Aliquam faucibus purus in massa tempor. Suspendisse potenti nullam ac tortor vitae purus faucibus ornare suspendisse. Nisl pretium fusce id velit ut tortor pretium viverra suspendisse. Sit amet venenatis urna cursus. Praesent semper feugiat nibh sed pulvinar. Non pulvinar neque laoreet suspendisse interdum consectetur libero id. Dignissim sodales ut eu sem integer vitae justo eget. Dui sapien eget mi proin sed libero. Posuere lorem ipsum dolor sit amet consectetur. In cursus turpis massa tincidunt dui ut ornare lectus. Sit amet purus gravida quis blandit. Et malesuada fames ac turpis."
     };
 
 }

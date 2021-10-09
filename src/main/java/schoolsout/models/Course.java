@@ -20,9 +20,8 @@ public class Course {
     private String code;
     private String imageURL;
     private boolean active;
-    private List<Course> courseHistory;
 
-    @OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "course", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Module> modules;
 
     public Course(String name, String description, String code, String imageURL, boolean active, List<Module> modules) {
@@ -105,7 +104,6 @@ public class Course {
                 ", code='" + code + '\'' +
                 ", imageURL='" + imageURL + '\'' +
                 ", active=" + active +
-                ", courseHistory=" + courseHistory +
                 ", modules=" + modules +
                 '}';
     }

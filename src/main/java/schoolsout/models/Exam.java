@@ -2,6 +2,8 @@ package schoolsout.models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
+
 import schoolsout.models.Module;
 
 @Entity
@@ -19,73 +21,96 @@ public class Exam {
     private int total;
 
     @ManyToOne
+    private Exam examGroup;
+    @OneToMany(mappedBy = "examGroup", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Exam> subExams;
+
+
+
+    @ManyToOne
     private Module module;
 
     public Exam() {}
-    public Exam(String name, String description, LocalDate date, int weight, int total, Module module) {
-        this.name = name;
-        this.description = description;
-        this.date = date;
-        this.weight = weight;
-        this.total = total;
-        this.module = module;
-    }
-
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public Exam setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Exam setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public Exam setDescription(String description) {
         this.description = description;
+        return this;
     }
 
     public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public Exam setDate(LocalDate date) {
         this.date = date;
+        return this;
     }
 
     public int getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public Exam setWeight(int weight) {
         this.weight = weight;
+        return this;
     }
 
     public int getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public Exam setTotal(int total) {
         this.total = total;
+        return this;
     }
 
-    public schoolsout.models.Module getModule() {
+    public Module getModule() {
         return module;
     }
 
-    public void setModule(schoolsout.models.Module module) {
+    public Exam setModule(Module module) {
         this.module = module;
+        return this;
+    }
+
+    public Exam getExamGroup() {
+        return examGroup;
+    }
+
+    public Exam setExamGroup(Exam examGroup) {
+        this.examGroup = examGroup;
+        return this;
+    }
+
+    public List<Exam> getSubExams() {
+        return subExams;
+    }
+
+    public Exam setSubExams(List<Exam> subExams) {
+        this.subExams = subExams;
+        return this;
     }
 
     @Override
@@ -98,6 +123,8 @@ public class Exam {
                 ", weight=" + weight +
                 ", total=" + total +
                 ", module=" + (module == null ? null : module.getName()) +
+                ", examGroup=" + (examGroup == null ? null : examGroup.getName()) +
+                ", subExams=" + (subExams == null ? null : subExams.size()) +
                 '}';
     }
 }

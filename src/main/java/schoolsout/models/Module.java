@@ -11,6 +11,7 @@ public class Module {
     @GeneratedValue
     private Long id;
     private String name;
+    @Column(length = 2000)
     private String description;
     @ManyToOne
     private Course course;
@@ -32,42 +33,46 @@ public class Module {
         return id;
     }
 
-    public void setId(Long id) {
+    public Module setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Module setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public Module setDescription(String description) {
         this.description = description;
+        return this;
     }
 
     public Course getCourse() {
         return course;
     }
 
-    public void setCourse(Course course) {
+    public Module setCourse(Course course) {
         this.course = course;
+        return this;
     }
 
     public List<Exam> getExams() {
         return exams;
     }
 
-    public void setExams(List<Exam> exams) {
+    public Module setExams(List<Exam> exams) {
         this.exams = exams;
+        return this;
     }
-
 
     @Override
     public String toString() {
