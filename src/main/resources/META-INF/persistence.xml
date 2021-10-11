@@ -10,7 +10,7 @@
             <property name="javax.persistence.jdbc.user" value="nasser" />
             <property name="javax.persistence.jdbc.password" value="nasser-intec-123" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" />
-            <property name="hibernate.hbm2ddl.auto" value="update" />
+            <property name="hibernate.hbm2ddl.auto" value="create" />
             <property name="hibernate.enable_lazy_load_no_trans" value="true"/>
         </properties>
     </persistence-unit>
