@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Id;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,20 +76,22 @@ public class GradeDAO implements IDAO<Grade> {
     }
 
 
-   /* public double averageGrade(Person person) {
+    public Double averageGrade(Person person) {
+        if (person == null) return null;
 
-        EntityManager em = getEntityManager();
-        TypedQuery<Grade> query = em.createQuery("SELECT g FROM Grade g WHERE g.person.id = :id", Grade.class);
-        query.setParameter("id", person.getId());
-        List<Grade> list = query.getResultList();
-        int i = 0;
-        double averageGrade = 0;
-        while (i < list.size()) {
-           averageGrade = averageGrade + list.get(i);
-            i++;
+        List<Grade> grades = findByPerson(person);
+        double total = 0;
+        int count = 0;
+        for (Grade grade : grades) {
+            BigDecimal value = grade.getGradeValue();
+            if (value != null) {
+                total += value.doubleValue();
+                count++;
+            }
         }
-        em.close();
-        return average;
-    }*/
-}
+
+        return count == 0 ? null : total / count;
+    }
+   }
+
 

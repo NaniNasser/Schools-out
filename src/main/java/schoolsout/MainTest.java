@@ -22,21 +22,21 @@ public class MainTest {
         PersonDAO personDAO = new PersonDAO();
         CourseDAO courseDAO = new CourseDAO();
         GradeDAO gradeDAO = new GradeDAO();
-/*
-        Person byId = personDAO.findById(178);
+        System.out.println(gradeDAO.averageGrade(personDAO.findById(177)));
+
+       /* Person byId = personDAO.findById(177);
         List<Grade> grades = DataFactory.gradePerson(byId);
 
-        grades.forEach(gradeDAO::save);
-
+        grades.forEach(gradeDAO::save);*/
+/*
         List<Grade> gradeList = gradeDAO.findByPerson(byId);
         gradeList.stream()
                 .map(Grade::getGradeValue)
                 .collect(Collectors.toList())
                 .forEach(System.out::println);
-
-
 */
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
+       /* System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         List<Module> moduleFromDB = moduleDAO.findAll();
         moduleFromDB.forEach(System.out::println);
 
@@ -48,12 +48,12 @@ public class MainTest {
         List<Person> personsFromDB = personDAO.findAll();
         personsFromDB.forEach(System.out::println);
 
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");*/
+/*
         List<Exam> subExamFromDB = examDAO.findAll();
         subExamFromDB.forEach(e -> System.out.println(e.getSubExams()));
 
-       List<Course> coursesFromDb = courseDAO.findAll();
+        List<Course> coursesFromDb = courseDAO.findAll();
         for (int i = 0; i < coursesFromDb.size(); i++) {
             Course course = coursesFromDb.get(i);
             if (i % 2 == 0) {
@@ -66,12 +66,13 @@ public class MainTest {
 
 
         }
+    }
 
-    //static void generateData() {
+    static void generateData() {
             //SET ddl to create
 
             UserDAO userDAO = new UserDAO();
-
+            CourseDAO courseDAO = new CourseDAO();
             List<Course> courses = DataFactory.getCourses();
 
 
@@ -96,7 +97,7 @@ public class MainTest {
             for (User user : users) {
                 userDAO.save(user);
             }
-
+*/
 
         }
     }
